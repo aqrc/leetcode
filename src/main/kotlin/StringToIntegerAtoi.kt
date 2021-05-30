@@ -1,29 +1,38 @@
 class StringToIntegerAtoi {
     fun myAtoi(s: String): Int {
-        var isNegative: Boolean? = null
-        return s.asSequence()
-            .dropWhile { it == ' ' }
-            .dropWhile { (it == '+' && isNegative == null).also { wasPlus -> if (wasPlus) isNegative = false} }
-            .dropWhile { (it == '-' && isNegative == null).also { wasMinus -> if (wasMinus) isNegative = true} }
-            .takeWhile {
-                it in listOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+        if (s.isEmpty()) return 0
+
+        var index = 0
+        while (index < s.length && s[index] == ' ') {
+            index++
+        }
+
+        if (index >= s.length) return 0
+
+
+        val isNegative = when (s[index]) {
+            '-' -> {
+                index++
+                true
             }
-            .joinToString("")
-            .takeIf { it.isNotEmpty() }
-            ?.let { numberAsString ->
-                runCatching {
-                    numberAsString
-                        .let {
-                            if (isNegative == true) "-$numberAsString"
-                            else numberAsString
-                        }
-                        .toInt()
-                }.getOrElse {
-                    if (isNegative == true)
-                        Int.MIN_VALUE
-                    else Int.MAX_VALUE
-                }
+            '+' -> {
+                index++
+                false
             }
-            ?: 0
+            else -> false
+        }
+
+        var result = 0
+        while (index < s.length && s[index] in '0'..'9') {
+            val nextUnit = s[index].toInt() - 48
+            if (isNegative ) {
+                if ((Int.MAX_VALUE - nextUnit) / 10 < result) return Int.MIN_VALUE
+            }
+            else if ((Int.MAX_VALUE - nextUnit) / 10 < result) return Int.MAX_VALUE
+            result = result * 10 + nextUnit
+            index++
+        }
+
+        return if (isNegative) -result else result
     }
 }

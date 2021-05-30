@@ -51,4 +51,23 @@ class StringToIntegerAtoiTest {
         val result = atoi.myAtoi("+-12")
         assertEquals(0, result)
     }
+
+    @Test
+    fun test4() {
+        assertEquals(0, '0'.toInt() - 48)
+        assertEquals(9, '9'.toInt() - 48)
+
+    }
+
+    @Test
+    fun test5() {
+        val result = atoi.myAtoi("")
+        assertEquals(0, result)
+    }
+
+    @Test
+    fun test6() {
+        val result = atoi.myAtoi(" ")
+        assertEquals(0, result)
+    }
 }
