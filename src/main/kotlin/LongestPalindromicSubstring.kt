@@ -24,7 +24,7 @@ class LongestPalindromicSubstring {
         return s.substring(longestPalStart, longestPalStart + longestPalLength)
     }
 
-    private inline fun String.findLongestPalindromicAround(startIndex: Int, isStartCoupled: Boolean = false): Int {
+    private fun String.findLongestPalindromicAround(startIndex: Int, isStartCoupled: Boolean = false): Int {
         var currentLeft = startIndex - 1
         var currentRight = if (isStartCoupled) startIndex + 2 else startIndex + 1
         while (0 <= currentLeft && currentRight < this.length) {

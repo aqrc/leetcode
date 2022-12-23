@@ -41,5 +41,5 @@ class AddTwoNumbers {
         return resultHead.next
     }
 
-    private inline fun ListNode?.getVal(): Int = this?.`val` ?: 0
+    private fun ListNode?.getVal(): Int = this?.`val` ?: 0
 }
