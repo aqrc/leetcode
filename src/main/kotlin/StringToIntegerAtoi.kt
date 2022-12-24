@@ -24,7 +24,7 @@ class StringToIntegerAtoi {
 
         var result = 0
         while (index < s.length && s[index] in '0'..'9') {
-            val nextUnit = s[index].code - 48
+            val nextUnit = s[index].toInt() - 48
             if (isNegative ) {
                 if ((Int.MAX_VALUE - nextUnit) / 10 < result) return Int.MIN_VALUE
             }

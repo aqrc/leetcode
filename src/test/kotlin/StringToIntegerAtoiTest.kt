@@ -54,8 +54,8 @@ class StringToIntegerAtoiTest {
 
     @Test
     fun test4() {
-        assertEquals(0, '0'.code - 48)
-        assertEquals(9, '9'.code - 48)
+        assertEquals(0, '0'.toInt() - 48)
+        assertEquals(9, '9'.toInt() - 48)
 
     }
 

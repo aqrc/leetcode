@@ -1,6 +1,6 @@
 class ReverseInteger {
     fun reverse(x: Int): Int {
-        val strX = if (x < 0) (-x).toString() else x
+        val strX = if (x < 0) (-x).toString() else x.toString()
 
         return strX.toString()
             .reversed()
